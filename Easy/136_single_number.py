@@ -1,11 +1,8 @@
 class Solution:
     def singleNumber(self, nums: List[int]) -> int:
-        hash_table = {}
+        bit_mask = 0
 
         for i in nums:
-            if i not in hash_table:
-                hash_table[i] = 1
-            else:
-                hash_table.pop(i)
+            bit_mask = bit_mask ^ i
 
-        return list(hash_table.keys())[0]
+        return bit_mask
