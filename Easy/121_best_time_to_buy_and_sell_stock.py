@@ -9,13 +9,13 @@ class Solution:
                 beg = 0
                 end = 0
                 continue
-            if prices[i] < prices[beg]:
+            if p < prices[beg]:
                 beg = i
                 end = i
                 continue
-            if prices[i] >= prices[end]:
+            if p >= prices[end]:
                 end = i
-                if (prices[end] - prices[beg]) > max_profit:
-                    max_profit = prices[end] - prices[beg]
+                if (p - prices[beg]) > max_profit:
+                    max_profit = p - prices[beg]
 
         return max_profit
