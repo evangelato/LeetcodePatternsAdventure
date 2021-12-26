@@ -1,13 +1,11 @@
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
         max_profit = 0
-        beg = -1
-        end = -1
+        beg = 0
+        end = 0
 
         for i, p in enumerate(prices):
             if i == 0:
-                beg = 0
-                end = 0
                 continue
             if p < prices[beg]:
                 beg = i
