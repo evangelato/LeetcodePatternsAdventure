@@ -20,10 +20,8 @@ class Solution:
 class HashSolution:
     def hasCycle(self, head: Optional[ListNode]) -> bool:
         seen_nodes = {}
-        if head is None:
-            return False
         curr_node = head
-        while curr_node.next is not None:
+        while curr_node is not None and curr_node.next is not None:
             if curr_node.next.val in seen_nodes:
                 if curr_node.next in seen_nodes[curr_node.next.val]:
                     return True
