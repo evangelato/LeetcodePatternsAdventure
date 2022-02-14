@@ -9,24 +9,18 @@ class Solution:
     def searchRecursive(
         self,
         letters: List[int],
-        target: int,
+        target: str,
         left_index: int,
         right_index: int,
-        mid_index,
+        mid_index: int,
     ):
         if left_index > right_index:
-            if letters[mid_index] <= target:
-                return (mid_index + 1) % len(letters)
-            else:
-                return left_index
+            return self.findNext(letters, mid_index, target)
 
         mid_index = (left_index + right_index) // 2
 
         if letters[mid_index] == target:
-            curr_letter = letters[mid_index]
-            while mid_index < len(letters) and curr_letter == letters[mid_index]:
-                mid_index += 1
-            return mid_index % len(letters)
+            return self.findNext(letters, mid_index, target)
         elif target < letters[mid_index]:
             return self.searchRecursive(
                 letters, target, left_index, mid_index - 1, mid_index
@@ -35,6 +29,16 @@ class Solution:
             return self.searchRecursive(
                 letters, target, mid_index + 1, right_index, mid_index
             )
+
+    def findNext(
+        self,
+        letters: List[int],
+        mid_index: int,
+        target: str,
+    ):
+        while mid_index < len(letters) and letters[mid_index] <= target:
+            mid_index += 1
+        return mid_index % len(letters)
 
 
 class LinearSolution:
