@@ -13,23 +13,23 @@ class Solution:
         return self.dfs(root, p, q)[0]
 
     def dfs(
-        self, search_node: "TreeNode", node1: "TreeNode", node2: "TreeNode"
+        self, curr_node: "TreeNode", node1: "TreeNode", node2: "TreeNode"
     ) -> tuple["TreeNode", bool]:
-        if search_node is None:
+        if curr_node is None:
             return (None, False)
 
-        left_traversal = self.dfs(search_node.left, node1, node2)
-        right_traversal = self.dfs(search_node.right, node1, node2)
+        left_traversal = self.dfs(curr_node.left, node1, node2)
+        right_traversal = self.dfs(curr_node.right, node1, node2)
 
         found = left_traversal[1] or right_traversal[1]
         return_node = left_traversal[0] or right_traversal[0]
 
         if left_traversal[1] and right_traversal[1]:
-            return_node = search_node
+            return_node = curr_node
 
-        if search_node == node1 or search_node == node2:
+        if curr_node == node1 or curr_node == node2:
             if found:
-                return_node = search_node
+                return_node = curr_node
             else:
                 found = True
 
